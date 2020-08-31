@@ -13,7 +13,7 @@ namespace RESTvsGRPC
 
         public GRPCClient()
         {
-            channel = new Channel("localhost:6000", ChannelCredentials.Insecure);
+            channel = new Channel("localhost:7000", ChannelCredentials.Insecure);
             client = new MeteoriteLandingsServiceClient(channel);
         }
 
