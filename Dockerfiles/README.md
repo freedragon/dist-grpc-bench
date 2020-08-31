@@ -1,7 +1,7 @@
-##Dockerize an ASP.NET Core application
+## Dockerize an ASP.NET Core application
 https://docs.docker.com/engine/examples/dotnetcore/
 
-##Docker images for ASP.NET Core
+## Docker images for ASP.NET Core
 https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/docker/building-net-docker-images?view=aspnetcore-3.1
 
 ```
@@ -24,6 +24,6 @@ COPY --from=build /app/aspnetapp/out ./
 ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 ```
 
-##Tutorial: Containerize a .NET Core app
+## Tutorial: Containerize a .NET Core app
 https://docs.microsoft.com/en-us/dotnet/core/docker/build-container?tabs=windows
 
