@@ -18,9 +18,9 @@ dotnet run -p GrpcAPI -c Release
 ```
 
 ## Start relaying Grpc API which will call Grpc API started above
-'''
+```
 dotnet run -p GrpcFrontend -c Release
-'''
+```
 
 ## Start benchmarking test 
 Runs the benchmark on the above services
@@ -62,6 +62,6 @@ Intel Xeon CPU E5-2673 v4 2.30GHz, 1 CPU, 4 logical and 2 physical cores
 
 ## Commandline parser references:
 
-https://www.nuget.org/packages/CommandLineParser/
-https://github.com/commandlineparser/commandline
+* https://www.nuget.org/packages/CommandLineParser/
+* https://github.com/commandlineparser/commandline
 
