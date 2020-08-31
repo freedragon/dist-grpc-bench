@@ -8,12 +8,12 @@ namespace GrpcFrontend
     {
         private readonly Server server;
 
-        public GrpcFrontendServer()
+        public GrpcFrontendServer(string host, int port)
         {
             server = new Server
             {
                 Services = { MeteoriteLandingsService.BindService(new GrpcFrontendServiceImpl()) },
-                Ports = { new ServerPort("localhost", 7000, ServerCredentials.Insecure) }
+                Ports = { new ServerPort(host, port, ServerCredentials.Insecure) }
             };
         }
 

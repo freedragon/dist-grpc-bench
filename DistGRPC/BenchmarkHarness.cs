@@ -5,7 +5,7 @@ using ModelLibrary.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RESTvsGRPC
+namespace DistributedGRPC
 {
     [AsciiDocExporter]
     [CsvExporter]
@@ -13,13 +13,11 @@ namespace RESTvsGRPC
     public class BenchmarkHarness
     {
         // [Params(100, 200)]
-        [Params(1,10,50,100)]
+        [Params(10,25,50,100, 200)]
         public int IterationCount;
 
-        // readonly RESTClient restClient = new RESTClient();
-        readonly GRPCClient grpcClient = new GRPCClient();
-
-        /**
+#if	false
+        readonly RESTClient restClient = new RESTClient();
         [Benchmark]
         public async Task RestGetSmallPayloadAsync()
         {
@@ -46,7 +44,10 @@ namespace RESTvsGRPC
                 await restClient.PostLargePayloadAsync(MeteoriteLandingData.RestMeteoriteLandings);
             }
         }
-        */
+#endif	// 0
+
+        readonly GRPCClient grpcClient = new GRPCClient();
+
         [Benchmark]
         public async Task GrpcGetSmallPayloadAsync()
         {

@@ -1,20 +1,27 @@
-﻿using Grpc.Core;
+﻿using System;
+using Grpc.Core;
 using ModelLibrary.GRPC;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using static ModelLibrary.GRPC.MeteoriteLandingsService;
 
-namespace RESTvsGRPC
+namespace DistributedGRPC
 {
     public class GRPCClient
     {
         private readonly Channel channel;
         private readonly MeteoriteLandingsServiceClient client;
 
+        // public GRPCClient(string host ="localhost", int port =7000)
         public GRPCClient()
         {
-            channel = new Channel("localhost:7000", ChannelCredentials.Insecure);
+            Console.WriteLine("Host Settings = {0}:{1}", SHostSettings.Host, SHostSettings.Port);
+            string hostWithPort = string.Format("{0}:{1}", SHostSettings.Host, SHostSettings.Port);
+
+            channel = new Channel(hostWithPort, ChannelCredentials.Insecure);
             client = new MeteoriteLandingsServiceClient(channel);
+
+            Console.WriteLine("gRpc client initialized. Service will be called wtih {0}", hostWithPort);
         }
 
         public async Task<string> GetSmallPayloadAsync()

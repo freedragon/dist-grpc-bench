@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace RESTvsGRPC
+namespace DistributedGRPC
 {
     public class RESTClient
     {

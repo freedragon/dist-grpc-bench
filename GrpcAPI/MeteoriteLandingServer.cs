@@ -8,12 +8,12 @@ namespace GrpcAPI
     {
         private readonly Server server;
 
-        public MeteoriteLandingServer()
+        public MeteoriteLandingServer(string host, int port)
         {
             server = new Server
             {
                 Services = { MeteoriteLandingsService.BindService(new MeteoriteLandingsServiceImpl()) },
-                Ports = { new ServerPort("localhost", 6000, ServerCredentials.Insecure) }
+                Ports = { new ServerPort(host, port, ServerCredentials.Insecure) }
             };
         }
 
