@@ -59,3 +59,9 @@ Intel Xeon CPU E5-2673 v4 2.30GHz, 1 CPU, 4 logical and 2 physical cores
 |      GrpcPostLargePayloadAsync |            100 |   560,649.7 us |  8,762.72 us |  7,767.92 us |   562,359.9 us |
 ```
 ## Project Reference - [https://medium.com/@EmperorRXF/evaluating-performance-of-rest-vs-grpc](https://medium.com/@EmperorRXF/evaluating-performance-of-rest-vs-grpc-1b8bdf0b22da?source=https://github.com/EmperorRXF/RESTvsGRPC)
+
+## Commandline parser references:
+
+https://www.nuget.org/packages/CommandLineParser/
+https://github.com/commandlineparser/commandline
+
