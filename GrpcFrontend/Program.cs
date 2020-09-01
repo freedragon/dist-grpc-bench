@@ -44,7 +44,8 @@ namespace GrpcFrontend
             var server = new GrpcFrontendServer(fehost, feport, behost, beport);
             server.Start();
 
-            Console.WriteLine("GRPC Frontend Service Running on localhost:7000");
+            Console.WriteLine("GRPC Frontend Service Running on {0}:{1} targetting {2}:{3}",
+                              fehost, feport, behost, beport);
 #if         false
             // Following line will cause error when the code runs within container
             Console.ReadKey();

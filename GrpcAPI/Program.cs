@@ -38,7 +38,7 @@ namespace GrpcAPI
             var server = new MeteoriteLandingServer(host, port);
             server.Start();
 
-            Console.WriteLine("GRPC MeteoriteLandingServer Running on localhost:6000");
+            Console.WriteLine("GRPC MeteoriteLandingServer Running on {0}:{1}", host, port);
 
 #if         false
             // Following line will cause error when the code runs within container
