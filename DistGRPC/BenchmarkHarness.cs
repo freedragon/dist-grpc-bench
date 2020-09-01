@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace DistributedGRPC
 {
-    [MarkdownExporter, AsciiDocExporter, HtmlExporter, CsvExporter, RPlotExporter]
+
+    [MarkdownExporter, AsciiDocExporter, HtmlExporter, RPlotExporter, CsvMeasurementsExporter]
     public class BenchmarkHarness
     {
         // [Params(100, 200)]
