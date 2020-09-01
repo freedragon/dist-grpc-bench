@@ -1,0 +1,19 @@
+docker build -t dotnet-daks-frontend:0.2 . --file Dockerfile.frontend
+docker build -t dotnet-daks-backend:0.2 . --file Dockerfile.backend
+
+docker image tag dotnet-daks-frontend:0.2 vpstdacrkc.azurecr.io/dotnet-daks-frontend:0.2
+docker image tag dotnet-daks-frontend:0.2 vpstdacreu.azurecr.io/dotnet-daks-frontend:0.2
+docker image tag dotnet-daks-frontend:0.2 vpstdacrus.azurecr.io/dotnet-daks-frontend:0.2
+
+docker image tag dotnet-daks-backend:0.2 vpstdacrkc.azurecr.io/dotnet-daks-backend:0.2
+docker image tag dotnet-daks-backend:0.2 vpstdacreu.azurecr.io/dotnet-daks-backend:0.2
+docker image tag dotnet-daks-backend:0.2 vpstdacrus.azurecr.io/dotnet-daks-backend:0.2
+
+docker image push vpstdacrkc.azurecr.io/dotnet-daks-frontend:0.2
+docker image push vpstdacreu.azurecr.io/dotnet-daks-frontend:0.2
+docker image push vpstdacrus.azurecr.io/dotnet-daks-frontend:0.2
+
+docker image push vpstdacrkc.azurecr.io/dotnet-daks-backend:0.2
+docker image push vpstdacreu.azurecr.io/dotnet-daks-backend:0.2
+docker image push vpstdacrus.azurecr.io/dotnet-daks-backend:0.2
+

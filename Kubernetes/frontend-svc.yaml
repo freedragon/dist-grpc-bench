@@ -15,7 +15,7 @@ spec:
         run: frontend-svc
     spec:
       containers:
-      - image: vpstdacrus.azurecr.io/dotnet-daks-frontend:0.1
+      - image: vpstdacrus.azurecr.io/dotnet-daks-frontend:0.2
         name: frontend-svc
         ports:
         - containerPort: 9000
