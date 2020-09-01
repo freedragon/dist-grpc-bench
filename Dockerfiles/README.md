@@ -166,12 +166,12 @@ mcr.microsoft.com/dotnet/core/sdk              3.1-bionic          7736faaba403 
 * Sample run with images built
 
 ```
-$ docker run -d --name backend dotnet-daks-backend:0.1
+$ docker run -d --rm -p 7000:7000 --name backend dotnet-daks-backend:0.1
 e8ce53e765c25527e80eb80e6c20722aee5a6cfe16f0c8ccbcddf8f6493b148b
 $ docker logs backend
 Host Settings = localhost:7777
 GRPC MeteoriteLandingServer Running on localhost:7777
-$ docker run -d --name frontend dotnet-daks-frontend:0.1
+$ docker run -d --rm -p 9000:9000 --name frontend dotnet-daks-frontend:0.1
 cc81da9e533db236c2cfd883315086d93971bc2546ee1ca77c9b80defb8fc0bd
 $ docker logs frontend
 FE Host = localhost:9900, BE Host = backend-host:7777
