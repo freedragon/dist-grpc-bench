@@ -1,0 +1,30 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-bionic AS build-env
+WORKDIR /app
+
+# Copy csproj and restore as distinct layers
+# COPY *.csproj ./
+
+RUN apt-get update && apt-get install -y git
+RUN git clone https://github.com/freedragon/dist-grpc-bench.git
+
+RUN cp -r dist-grpc-bench/* ./
+
+# Restore packages
+RUN dotnet restore DistGRPC.sln
+
+# RUN dotnet publish -c Release -o out
+RUN dotnet build -c Release DistGRPC.sln -o out
+
+# Build runtime image
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-bionic
+
+WORKDIR /root
+COPY --from=build-env /app/out /root
+
+# command lines to run the servoces and client
+## dotnet run -p DistGRPC -c Release -- -h localhost -p 7000
+## dotnet run -p GrpcFrontend -c Release -- -h localhost -p 7000
+## dotnet run -p GrpcAPI -c Release -- -h localhost -p 6000
+
+ENTRYPOINT [ "dotnet", "GrpcAPI.dll", "-h", "localhost", "-p", "7777" ]
+
