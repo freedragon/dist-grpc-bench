@@ -5,7 +5,7 @@ metadata:
     run: backend-svc
   name: backend-svc
 spec:
-  replicas: 1
+  replicas: 4
   selector:
     matchLabels:
       run: backend-svc
