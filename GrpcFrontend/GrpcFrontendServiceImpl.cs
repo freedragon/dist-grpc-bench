@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Grpc.Core;
 using ModelLibrary.GRPC;
 using System.Collections.Generic;
@@ -22,15 +23,17 @@ namespace GrpcFrontend
             client = new MeteoriteLandingsServiceClient(channel);
         }
 
-        public override async Task<Version> GetVersion(EmptyRequest request, ServerCallContext context)
+        public override async Task<ModelLibrary.GRPC.Version> GetVersion(EmptyRequest request, ServerCallContext context)
         {
             // return Task.FromResult( (await client.GetVersionAsync(new EmptyRequest())).ApiVersion );
             // return Task.FromResult( (await client.GetVersionAsync(request)));
+            Console.WriteLine("<><> GetVersion relay request received");
             return  (await client.GetVersionAsync(request));
         }
 
         public override async Task GetLargePayload(EmptyRequest request, IServerStreamWriter<MeteoriteLanding> responseStream, ServerCallContext context)
         {
+            Console.WriteLine("<><> GetLargePayload relay request received");
             /*
             foreach (var meteoriteLanding in MeteoriteLandingData.GrpcMeteoriteLandings)
             {
@@ -51,12 +54,14 @@ namespace GrpcFrontend
 
         public override async Task<MeteoriteLandingList> GetLargePayloadAsList(EmptyRequest request, ServerCallContext context)
         {
+            Console.WriteLine("<><> GetLargePayloadAsList relay request received");
             // return Task.FromResult( (MeteoriteLandingList)(await client.GetLargePayloadAsListAsync(request)).MeteoriteLandings );
             return (await client.GetLargePayloadAsListAsync(request));
         }
 
         public override async Task<StatusResponse> PostLargePayload(MeteoriteLandingList request, ServerCallContext context)
         {
+            Console.WriteLine("<><> PostLargePayload relay request received");
             // return Task.FromResult( (StatusResponse)(await client.PostLargePayloadAsync(request)).Status );
             return (await client.PostLargePayloadAsync(request));
         }
