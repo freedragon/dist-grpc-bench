@@ -15,12 +15,12 @@ spec:
         run: frontend-svc
     spec:
       containers:
-      - image: vpstdacrkc.azurecr.io/dotnet-daks-frontend:0.2
+      - image: vpstdacrus.azurecr.io/dotnet-daks-frontend:0.2
         name: frontend-svc
         ports:
         - containerPort: 9000
         command: ["dotnet", "GrpcFrontend.dll"]
-        args: ["-f", "localhost", "-p", "9000", "-b", "10.110.11.157", "-t", "7000"]
+        args: ["-f", "localhost", "-p", "9000", "-b", "10.110.11.142", "-t", "7000"]
 
 ---
 apiVersion: v1
