@@ -7,45 +7,14 @@ using System.Threading.Tasks;
 
 namespace DistributedGRPC
 {
-    [AsciiDocExporter]
-    [CsvExporter]
-    [HtmlExporter]
+    [MarkdownExporter, AsciiDocExporter, HtmlExporter, CsvExporter, RPlotExporter]
     public class BenchmarkHarness
     {
         // [Params(100, 200)]
         [Params(10,25,50,100, 200)]
         public int IterationCount;
 
-#if	false
-        readonly RESTClient restClient = new RESTClient();
-        [Benchmark]
-        public async Task RestGetSmallPayloadAsync()
-        {
-            for (int i = 0; i < IterationCount; i++)
-            {
-                await restClient.GetSmallPayloadAsync();
-            }
-        }
-
-        [Benchmark]
-        public async Task RestGetLargePayloadAsync()
-        {
-            for (int i = 0; i < IterationCount; i++)
-            {
-                await restClient.GetLargePayloadAsync();
-            }
-        }
-
-        [Benchmark]
-        public async Task RestPostLargePayloadAsync()
-        {
-            for (int i = 0; i < IterationCount; i++)
-            {
-                await restClient.PostLargePayloadAsync(MeteoriteLandingData.RestMeteoriteLandings);
-            }
-        }
-#endif	// 0
-
+        // Hostand Port will be configured through environment vairalbes.
         readonly GRPCClient grpcClient = new GRPCClient();
 
         [Benchmark]
@@ -83,6 +52,36 @@ namespace DistributedGRPC
                 await grpcClient.PostLargePayloadAsync(MeteoriteLandingData.GrpcMeteoriteLandingList);
             }
         }
+
+#if	false
+        readonly RESTClient restClient = new RESTClient();
+        [Benchmark]
+        public async Task RestGetSmallPayloadAsync()
+        {
+            for (int i = 0; i < IterationCount; i++)
+            {
+                await restClient.GetSmallPayloadAsync();
+            }
+        }
+
+        [Benchmark]
+        public async Task RestGetLargePayloadAsync()
+        {
+            for (int i = 0; i < IterationCount; i++)
+            {
+                await restClient.GetLargePayloadAsync();
+            }
+        }
+
+        [Benchmark]
+        public async Task RestPostLargePayloadAsync()
+        {
+            for (int i = 0; i < IterationCount; i++)
+            {
+                await restClient.PostLargePayloadAsync(MeteoriteLandingData.RestMeteoriteLandings);
+            }
+        }
+#endif	// 0
     }
 
     public class AllowNonOptimized : ManualConfig

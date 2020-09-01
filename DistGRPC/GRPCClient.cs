@@ -15,13 +15,15 @@ namespace DistributedGRPC
         // public GRPCClient(string host ="localhost", int port =7000)
         public GRPCClient()
         {
-            Console.WriteLine("Host Settings = {0}:{1}", SHostSettings.Host, SHostSettings.Port);
-            string hostWithPort = string.Format("{0}:{1}", SHostSettings.Host, SHostSettings.Port);
+            string host = Environment.GetEnvironmentVariable("BenchFEHost") ?? "localhost";
+            int port = Int32.Parse(Environment.GetEnvironmentVariable("BenchFEPort") ?? "6000");
 
-            channel = new Channel(hostWithPort, ChannelCredentials.Insecure);
+            string channelHost = string.Format("{0}:{1}", host, port);
+
+            channel = new Channel(channelHost, ChannelCredentials.Insecure);
             client = new MeteoriteLandingsServiceClient(channel);
 
-            Console.WriteLine("gRpc client initialized. Service will be called wtih {0}", hostWithPort);
+            Console.WriteLine("gRpc client initialized. Service will be called wtih {0}", channelHost);
         }
 
         public async Task<string> GetSmallPayloadAsync()

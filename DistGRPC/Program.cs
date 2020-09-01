@@ -4,12 +4,6 @@ using CommandLine;
 
 namespace DistributedGRPC
 {
-    public static class SHostSettings
-    {
-        public static string Host { get; set; }
-        public static int Port { get; set; }
-    }
-
     class Program
     {
         public class Options
@@ -26,12 +20,11 @@ namespace DistributedGRPC
             Parser.Default.ParseArguments<Options>(args)
                    .WithParsed<Options>(o =>
                    {
+                       Environment.SetEnvironmentVariable("BenchFEHost", o.Host);
+                       Environment.SetEnvironmentVariable("BenchFEPort", string.Format("{0}", o.Port));
+
                        Console.WriteLine("Host Settings = {0}:{1}", o.Host, o.Port);
 
-                       SHostSettings.Host = o.Host;
-                       SHostSettings.Port = o.Port;
-
-                       Console.WriteLine("Host Settings = {0}:{1}", SHostSettings.Host, SHostSettings.Port);
                        BenchmarkRunner.Run<BenchmarkHarness>();
                    });
         }
