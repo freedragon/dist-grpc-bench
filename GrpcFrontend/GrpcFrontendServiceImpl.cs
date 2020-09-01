@@ -15,9 +15,10 @@ namespace GrpcFrontend
         private readonly Channel channel;
         private readonly MeteoriteLandingsServiceClient client;
 
-        public GrpcFrontendServiceImpl()
+        public GrpcFrontendServiceImpl(string behost, int beport)
         {
-            channel = new Channel("localhost:6000", ChannelCredentials.Insecure);
+            string channelhost = string.Format("{0}:{1}", behost, beport);
+            channel = new Channel(channelhost, ChannelCredentials.Insecure);
             client = new MeteoriteLandingsServiceClient(channel);
         }
 

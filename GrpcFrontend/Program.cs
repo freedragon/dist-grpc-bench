@@ -10,11 +10,17 @@ namespace GrpcFrontend
     {
         public class Options
         {
-            [Option('h', "Host", Required = true, HelpText = "Set the hostname (or IP address) of service for benchmark.")]
-            public string Host { get; set; }
+            [Option('f', "F.E. Host", Required = true, HelpText = "Set the hostname (or IP address) of Frontend service.")]
+            public string FEHost { get; set; }
 
-            [Option('p', "port", Required = true, HelpText = "Set the Port number of service for benchmark.")]
-            public int Port { get; set; }
+            [Option('p', "F.E. Port", Required = true, HelpText = "Set the Port number of Frontend service.")]
+            public int FEPort { get; set; }
+
+            [Option('b', "B.E. Host", Required = true, HelpText = "Set the hostname (or IP address) of Backend service.")]
+            public string BEHost { get; set; }
+
+            [Option('t', "B.E. Port", Required = true, HelpText = "Set the Port number of Backend service.")]
+            public int BEPort { get; set; }
         }
 
         static void Main(string[] args)
@@ -22,14 +28,14 @@ namespace GrpcFrontend
             Parser.Default.ParseArguments<Options>(args)
                    .WithParsed<Options>(o =>
                    {
-                       Console.WriteLine("Host Settings = {0}:{1}", o.Host, o.Port);
-                       StartServer(o.Host, o.Port).GetAwaiter().GetResult();
+                       Console.WriteLine("FE Host = {0}:{1}, BE Host = {2}:{3}", o.FEHost, o.FEPort, o.BEHost, o.BEPort);
+                       StartServer(o.FEHost, o.FEPort, o.BEHost, o.BEPort).GetAwaiter().GetResult();
                    });
         }
 
-        private static async Task StartServer(string host, int port)
+        private static async Task StartServer(string fehost, int feport, string behost, int beport)
         {
-            var server = new GrpcFrontendServer(host, port);
+            var server = new GrpcFrontendServer(fehost, feport, behost, beport);
             server.Start();
 
             Console.WriteLine("GRPC Frontend Service Running on localhost:7000");
