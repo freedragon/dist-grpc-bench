@@ -2,12 +2,18 @@
 using System.Collections.Generic;
 using CommandLine;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+
+//
+// Reference: https://stackoverflow.com/questions/13406435/is-thread-sleeptimeout-infinite-more-efficient-than-whiletrue
 
 namespace GrpcFrontend
 {
     class Program
     {
+        static readonly CancellationTokenSource cts = new CancellationTokenSource();
+
         public class Options
         {
             [Option('f', "F.E. Host", Required = true, HelpText = "Set the hostname (or IP address) of Frontend service.")]
@@ -39,8 +45,13 @@ namespace GrpcFrontend
             server.Start();
 
             Console.WriteLine("GRPC Frontend Service Running on localhost:7000");
+#if         false
+            // Following line will cause error when the code runs within container
             Console.ReadKey();
-
+#else
+            // Task running Main is efficiently suspended (no CPU use) forever until cts is activated.
+            await Task.Delay(Timeout.Infinite, cts.Token).ConfigureAwait(false);
+#endif
             await server.ShutdownAsync();
         }
     }

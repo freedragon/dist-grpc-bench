@@ -12,7 +12,7 @@ namespace DistributedGRPC
     public class BenchmarkHarness
     {
         // [Params(100, 200)]
-        [Params(10,25,50,100, 200)]
+        [Params(10, 50, 100)]
         public int IterationCount;
 
         // Hostand Port will be configured through environment vairalbes.
