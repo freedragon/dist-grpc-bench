@@ -2,38 +2,35 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    run: frontend-svc
-  name: frontend-svc
+    run: fe-kc-scu-svc
+  name: fe-kc-scu-svc
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run: frontend-svc
+      run: fe-kc-scu-svc
   template:
     metadata:
       labels:
-        run: frontend-svc
+        run: fe-kc-scu-svc
     spec:
       containers:
       - image: vpstdacrkc.azurecr.io/dotnet-daks-frontend:0.2
-        name: frontend-svc
+        name: fe-kc-scu-svc
         ports:
         - containerPort: 9000
         command: ["dotnet", "GrpcFrontend.dll"]
-        args: ["-f", "localhost", "-p", "9000", "-b", "10.110.11.157", "-t", "7000"]
+        args: ["-f", "0.0.0.0", "-p", "9000", "-b", "10.110.15.231", "-t", "7000"]
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  labels:
-    run: frontend-svc
-  name: frontend-svc
+  name: fe-kc-scu-svc
 spec:
+  type: LoadBalancer
   ports:
-  - port: 9000
-    protocol: TCP
-    targetPort: 9000
+  - protocol: TCP
+    port: 9000
   selector:
-    run: frontend-svc
-  type: ClusterIP
+    run: fe-kc-scu-svc

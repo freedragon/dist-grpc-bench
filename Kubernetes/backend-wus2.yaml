@@ -2,21 +2,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    run: backend-svc
-  name: backend-svc
+    run: backend-wus2-svc
+  name: backend-wus2-svc
 spec:
   replicas: 4
   selector:
     matchLabels:
-      run: backend-svc
+      run: backend-wus2-svc
   template:
     metadata:
       labels:
-        run: backend-svc
+        run: backend-wus2-svc
     spec:
       containers:
       - image: vpstdacrus.azurecr.io/dotnet-daks-backend:0.2
-        name: backend-svc
+        name: backend-wus2-svc
         ports:
         - containerPort: 7000
       tolerations:
@@ -30,13 +30,13 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    run: backend-svc
-  name: backend-svc
+    run: backend-wus2-svc
+  name: backend-wus2-svc
 spec:
   ports:
   - port: 7000
     protocol: TCP
     targetPort: 7000
   selector:
-    run: backend-svc
+    run: backend-wus2-svc
   type: ClusterIP
