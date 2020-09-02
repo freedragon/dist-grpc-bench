@@ -15,12 +15,12 @@ spec:
         run: fe-eu-scu-svc
     spec:
       containers:
-      - image: vpstdacreu.azurecr.io/dotnet-daks-frontend:0.2
+      - image: vpstdacreu.azurecr.io/dotnet-daks-frontend:0.3
         name: fe-eu-scu-svc
         ports:
         - containerPort: 9000
         command: ["dotnet", "GrpcFrontend.dll"]
-        args: ["-f", "0.0.0.0", "-p", "9000", "-b", "10.110.15.231", "-t", "7000"]
+        args: ["-f", "0.0.0.0", "-p", "9000", "-b", "10.110.15.1", "-t", "7000"]
 
 ---
 apiVersion: v1

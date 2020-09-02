@@ -15,12 +15,12 @@ spec:
         run: fe-wus2-wus2-svc
     spec:
       containers:
-      - image: vpstdacrus.azurecr.io/dotnet-daks-frontend:0.2
+      - image: vpstdacrus.azurecr.io/dotnet-daks-frontend:0.3
         name: fe-wus2-wus2-svc
         ports:
         - containerPort: 9000
         command: ["dotnet", "GrpcFrontend.dll"]
-        args: ["-f", "0.0.0.0", "-p", "9000", "-b", "10.110.11.110", "-t", "7000"]
+        args: ["-f", "0.0.0.0", "-p", "9000", "-b", "10.110.10.66", "-t", "7000"]
 
 ---
 apiVersion: v1

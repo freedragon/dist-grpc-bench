@@ -26,5 +26,5 @@ COPY --from=build-env /app/out /root
 ## dotnet run -p GrpcAPI -c Release -- -h localhost -p 6000
 
 ENTRYPOINT [ "dotnet", "GrpcFrontend.dll"]
-CMD ["-f", "localhost", "-p", "9000", "-b", "backend", "-t", "7000"]
+CMD ["-f", "0.0.0.0", "-p", "9000", "-b", "0.0.0.0", "-t", "7000"]
 

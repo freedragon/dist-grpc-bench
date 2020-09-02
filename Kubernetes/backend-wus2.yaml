@@ -15,7 +15,7 @@ spec:
         run: backend-wus2-svc
     spec:
       containers:
-      - image: vpstdacrus.azurecr.io/dotnet-daks-backend:0.2
+      - image: vpstdacrus.azurecr.io/dotnet-daks-backend:0.3
         name: backend-wus2-svc
         ports:
         - containerPort: 7000
