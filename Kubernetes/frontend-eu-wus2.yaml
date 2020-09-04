@@ -20,7 +20,7 @@ spec:
         ports:
         - containerPort: 9000
         command: ["dotnet", "GrpcFrontend.dll"]
-        args: ["-f", "0.0.0.0", "-p", "9000", "-b", "10.110.10.66", "-t", "7000"]
+        args: ["-f", "0.0.0.0", "-p", "9000", "-b", "10.110.8.66", "-t", "7000"]
 
 ---
 apiVersion: v1
