@@ -32,6 +32,8 @@ metadata:
   labels:
     run: backend-wus2-svc
   name: backend-wus2-svc
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
 spec:
   ports:
   - port: 7000
@@ -39,4 +41,4 @@ spec:
     targetPort: 7000
   selector:
     run: backend-wus2-svc
-  type: ClusterIP
+  type: LoadBalancer
