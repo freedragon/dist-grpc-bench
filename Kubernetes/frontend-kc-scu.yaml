@@ -15,7 +15,7 @@ spec:
         run: fe-kc-scu-svc
     spec:
       containers:
-      - image: vpstdacrkc.azurecr.io/dotnet-daks-frontend:0.3
+      - image: vpstdacrkc.azurecr.io/dotnet-daks-frontend:0.4
         name: fe-kc-scu-svc
         ports:
         - containerPort: 9000

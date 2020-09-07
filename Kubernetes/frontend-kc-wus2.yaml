@@ -15,7 +15,7 @@ spec:
         run: fe-kc-wus2-svc
     spec:
       containers:
-      - image: vpstdacrkc.azurecr.io/dotnet-daks-frontend:0.3
+      - image: vpstdacrkc.azurecr.io/dotnet-daks-frontend:0.4
         name: fe-kc-wus2-svc
         ports:
         - containerPort: 9000
